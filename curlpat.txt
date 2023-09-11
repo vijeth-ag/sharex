@@ -1,1 +1,13 @@
-curl -H "Authorization: Bearer <yourToken>" https://{baseUrlOfYourInstance}/rest/api/content
+#!/bin/bash
+
+# Replace with your actual values
+CONFLUENCE_URL="https://your-confluence-domain/wiki"
+PAGE_ID="123456789"  # Replace with the target page ID
+PERSONAL_ACCESS_TOKEN="your-personal-access-token"
+FILE_PATH="path/to/your/file.pdf"
+
+# API endpoint for uploading attachments to a page
+ATTACHMENT_ENDPOINT="$CONFLUENCE_URL/rest/api/content/$PAGE_ID/child/attachment"
+
+# Upload the file using curl
+curl -X POST -H "Authorization: Bearer $PERSONAL_ACCESS_TOKEN" -H "X-Atlassian-Token: nocheck" -F "file=@$FILE_PATH" $ATTACHMENT_ENDPOINT
